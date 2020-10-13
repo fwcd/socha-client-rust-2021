@@ -1,0 +1,16 @@
+[package]
+name = "socha-client-2021"
+version = "0.1.0"
+authors = ["fwcd"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+socha-client-base = { git = "https://github.com/fwcd/socha-sdk-rust", rev = "3ac02a9" } # TODO: Use pinned commit rev
+socha-plugin-2021 = { git = "https://github.com/fwcd/socha-sdk-rust", rev = "3ac02a9" }
+getopts = "0.2.21"
+log = "0.4.8"
+xml-rs = "0.8.0"
+simplelog = "0.8"
+rand = "0.7.2"
