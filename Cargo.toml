@@ -7,8 +7,8 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-socha-client-base = { git = "https://github.com/fwcd/socha-sdk-rust", rev = "2518067" } # TODO: Use pinned commit rev
-socha-plugin-2021 = { git = "https://github.com/fwcd/socha-sdk-rust", rev = "2518067" }
+socha-client-base = { git = "https://github.com/fwcd/socha-sdk-rust", rev = "6b8a35a" } # TODO: Use pinned commit rev
+socha-plugin-2021 = { git = "https://github.com/fwcd/socha-sdk-rust", rev = "6b8a35a" }
 getopts = "0.2.21"
 log = "0.4.8"
 xml-rs = "0.8.0"

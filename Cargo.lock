@@ -195,15 +195,15 @@ dependencies = [
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.7.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "simplelog 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "socha-client-base 0.1.0 (git+https://github.com/fwcd/socha-sdk-rust?rev=2518067)",
- "socha-plugin-2021 0.1.0 (git+https://github.com/fwcd/socha-sdk-rust?rev=2518067)",
+ "socha-client-base 0.1.0 (git+https://github.com/fwcd/socha-sdk-rust?rev=6b8a35a)",
+ "socha-plugin-2021 0.1.0 (git+https://github.com/fwcd/socha-sdk-rust?rev=6b8a35a)",
  "xml-rs 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "socha-client-base"
 version = "0.1.0"
-source = "git+https://github.com/fwcd/socha-sdk-rust?rev=2518067#251806714987646041aa16a0d8f1c230a48cfb9b"
+source = "git+https://github.com/fwcd/socha-sdk-rust?rev=6b8a35a#6b8a35a0fe0b3a814870921345b48b10164752df"
 dependencies = [
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "xml-rs 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -212,14 +212,14 @@ dependencies = [
 [[package]]
 name = "socha-plugin-2021"
 version = "0.1.0"
-source = "git+https://github.com/fwcd/socha-sdk-rust?rev=2518067#251806714987646041aa16a0d8f1c230a48cfb9b"
+source = "git+https://github.com/fwcd/socha-sdk-rust?rev=6b8a35a#6b8a35a0fe0b3a814870921345b48b10164752df"
 dependencies = [
  "arrayvec 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "itertools 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "lazy_static 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "socha-client-base 0.1.0 (git+https://github.com/fwcd/socha-sdk-rust?rev=2518067)",
+ "socha-client-base 0.1.0 (git+https://github.com/fwcd/socha-sdk-rust?rev=6b8a35a)",
 ]
 
 [[package]]
@@ -316,8 +316,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum regex 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "36f45b719a674bf4b828ff318906d6c133264c793eff7a41e30074a45b5099e2"
 "checksum regex-syntax 0.6.19 (registry+https://github.com/rust-lang/crates.io-index)" = "c17be88d9eaa858870aa5e48cc406c206e4600e983fc4f06bbe5750d93d09761"
 "checksum simplelog 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)" = "2b2736f58087298a448859961d3f4a0850b832e72619d75adc69da7993c2cd3c"
-"checksum socha-client-base 0.1.0 (git+https://github.com/fwcd/socha-sdk-rust?rev=2518067)" = "<none>"
-"checksum socha-plugin-2021 0.1.0 (git+https://github.com/fwcd/socha-sdk-rust?rev=2518067)" = "<none>"
+"checksum socha-client-base 0.1.0 (git+https://github.com/fwcd/socha-sdk-rust?rev=6b8a35a)" = "<none>"
+"checksum socha-plugin-2021 0.1.0 (git+https://github.com/fwcd/socha-sdk-rust?rev=6b8a35a)" = "<none>"
 "checksum termcolor 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "bb6bfa289a4d7c5766392812c0a1f4c1ba45afa1ad47803c11e1f407d846d75f"
 "checksum thread_local 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "d40c6d1b69745a6ec6fb1ca717914848da4b44ae29d9b3080cbee91d72a69b14"
 "checksum time 0.1.42 (registry+https://github.com/rust-lang/crates.io-index)" = "db8dcfca086c1143c9270ac42a2bbd8a7ee477b78ac8e45b19abfb0cbede4b6f"
