@@ -1,5 +1,7 @@
 # Software Challenge 2021 Rust Client
 
+[![Build](https://github.com/fwcd/socha-client-rust-2021/actions/workflows/build.yml/badge.svg)](https://github.com/fwcd/socha-client-rust-2021/actions/workflows/build.yml)
+
 A template client for the [Software Challenge 2021](https://www.software-challenge.de) (Blokus) written in Rust.
 
 The client implements [the XML protocol](https://docs.software-challenge.de/spiele/blokus/xml-dokumentation.html) for communication with the game server, the game structures and a very simple logic that picks moves at random.
