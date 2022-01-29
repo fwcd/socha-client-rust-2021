@@ -116,9 +116,9 @@ impl<D> SCClient<D> where D: SCClientDelegate {
                 // Try parsing as room message (the game is running)
                 "room" => match Room::from_node(&node) {
                     Ok(room) => match room.data {
-                        Data::WelcomeMessage { color } => {
-                            info!("Got welcome message with color: {:?}", color);
-                            self.delegate.on_welcome_message(&color);
+                        Data::WelcomeMessage { team } => {
+                            info!("Got welcome message with team: {:?}", team);
+                            self.delegate.on_welcome_message(&team);
                         },
                         Data::Memento { state } => {
                             info!("Got updated game state");
