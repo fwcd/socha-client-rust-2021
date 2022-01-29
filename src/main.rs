@@ -1,12 +1,10 @@
-mod logic;
-
 use std::env;
 use std::str::FromStr;
 use simplelog::{SimpleLogger, Config};
 use log::LevelFilter;
 use getopts::Options;
-use socha_client_base::client::{SCClient, DebugMode};
-use logic::OwnGameLogic;
+use socha_client_2021::client::{SCClient, DebugMode};
+use socha_client_2021::logic::OwnGameLogic;
 
 fn print_usage(program: &str, options: Options) {
     let brief = format!("Usage: {} [options]", program);
