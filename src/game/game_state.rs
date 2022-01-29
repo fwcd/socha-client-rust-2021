@@ -105,7 +105,7 @@ impl GameState {
     }
 
     // Game rule logic is mostly a direct translation of
-    // https://github.com/CAU-Kiel-Tech-Inf/backend/blob/97d185660754ffba4bd4444f3f39ae350f1d053e/plugin/src/shared/sc/plugin2021/util/GameRuleLogic.kt
+    // https://github.com/software-challenge/backend/blob/97d185660754ffba4bd4444f3f39ae350f1d053e/plugin/src/shared/sc/plugin2021/util/GameRuleLogic.kt
 
     /// Computes the points from the given, undeployed piece shapes.
     pub fn get_points_from_undeployed(undeployed: HashSet<PieceShape>, mono_last: bool) -> i32 {
@@ -314,6 +314,7 @@ impl GameState {
 
 impl FromXmlNode for GameState {
     fn from_node(node: &XmlNode) -> SCResult<Self> {
+        println!("Node: {:?}", node);
         Ok(Self {
             turn: node.attribute("turn")?.parse()?,
             round: node.attribute("round")?.parse()?,
