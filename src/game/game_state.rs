@@ -1,6 +1,6 @@
 use std::{collections::{HashMap, HashSet}, iter::once};
 use crate::util::{SCResult, FromXmlNode, XmlNode};
-use super::{BOARD_SIZE, Board, CORNERS, Color, Move, PIECE_SHAPES, PIECE_SHAPES_BY_NAME, Piece, PieceShape, Player, Team, Vec2};
+use super::{BOARD_SIZE, Board, CORNERS, Color, Move, PIECE_SHAPES, PIECE_SHAPES_BY_NAME, Piece, PieceShape, Player, Team, Vec2, COLOR_COUNT};
 
 /// A snapshot of the game's state. It holds the
 /// information needed to compute the next move.
@@ -18,16 +18,12 @@ pub struct GameState {
     pub board: Board,
     /// The piece that has to be placed in the first round.
     pub start_piece: PieceShape,
-    /// The color that begins the game.
-    pub start_color: Color,
     /// The team that begins the game.
     pub start_team: Team,
     /// A list of all colors currently in the game.
-    pub ordered_colors: Vec<Color>,
+    pub valid_colors: Vec<Color>,
     /// A map that stores, for each color, whether the last move was a monomino if all pieces have been placed.
     pub last_move_mono: HashMap<Color, bool>,
-    /// The current color's index
-    pub current_color_index: u32,
     /// The undeployed blue shapes.
     pub blue_shapes: HashSet<PieceShape>,
     /// The undeployed yellow shapes.
@@ -51,11 +47,9 @@ impl GameState {
             second: Player { team: Team::Two, display_name: "Bob".to_owned() },
             board: Board::new(),
             start_piece,
-            start_color: Color::Blue,
             start_team: Team::One,
-            ordered_colors: vec![Color::Blue, Color::Yellow, Color::Red, Color::Green],
+            valid_colors: vec![Color::Blue, Color::Yellow, Color::Red, Color::Green],
             last_move_mono: HashMap::new(),
-            current_color_index: 0,
             blue_shapes: PIECE_SHAPES.iter().cloned().collect(),
             yellow_shapes: PIECE_SHAPES.iter().cloned().collect(),
             red_shapes: PIECE_SHAPES.iter().cloned().collect(),
@@ -65,7 +59,7 @@ impl GameState {
 
     /// Fetches the current color.
     pub fn current_color(&self) -> Color {
-        self.ordered_colors[self.current_color_index as usize]
+        self.valid_colors[self.turn as usize % COLOR_COUNT]
     }
 
     /// Fetches the current team.
@@ -200,14 +194,13 @@ impl GameState {
     }
 
     pub fn try_advance(&mut self, turns: u32) -> SCResult<()> {
-        if self.ordered_colors.is_empty() {
+        if self.valid_colors.is_empty() {
             return Err("Game has already ended, cannot advance!".into());
         }
 
-        self.current_color_index = (self.current_color_index + turns) % self.ordered_colors.len() as u32;
-        // TODO: This doesn't seem correct, but matches the implementation of https://github.com/CAU-Kiel-Tech-Inf/backend/blob/97d185660754ffba4bd4444f3f39ae350f1d053e/plugin/src/shared/sc/plugin2021/GameState.kt#L114-L123
+        // TODO: This doesn't seem correct, but matches the implementation of https://github.com/software-challenge/backend/blob/97d185660754ffba4bd4444f3f39ae350f1d053e/plugin/src/shared/sc/plugin2021/GameState.kt#L114-L123
         // Perhaps we should divide AFTER the turns have been added, then simply assign instead of add-assign the round?
-        self.round += turns / self.ordered_colors.len() as u32;
+        self.round += turns / self.valid_colors.len() as u32;
         self.turn += turns;
 
         Ok(())
@@ -321,11 +314,9 @@ impl FromXmlNode for GameState {
             second: Player::from_node(node.child_by_name("second")?)?,
             board: Board::from_node(node.child_by_name("board")?)?,
             start_piece: node.attribute("startPiece")?.parse()?,
-            start_color: Color::from_node(node.child_by_name("startColor")?)?,
             start_team: Team::from_node(node.child_by_name("startTeam")?)?,
-            ordered_colors: node.child_by_name("orderedColors")?.childs_by_name("color").map(Color::from_node).collect::<Result<_, _>>()?,
+            valid_colors: node.child_by_name("validColors")?.childs_by_name("color").map(Color::from_node).collect::<Result<_, _>>()?,
             last_move_mono: HashMap::new(), // TODO
-            current_color_index: node.attribute("currentColorIndex")?.parse()?,
             blue_shapes: node.child_by_name("blueShapes")?.childs_by_name("shape").map(PieceShape::from_node).collect::<Result<_, _>>()?,
             yellow_shapes: node.child_by_name("yellowShapes")?.childs_by_name("shape").map(PieceShape::from_node).collect::<Result<_, _>>()?,
             red_shapes: node.child_by_name("redShapes")?.childs_by_name("shape").map(PieceShape::from_node).collect::<Result<_, _>>()?,
@@ -348,9 +339,7 @@ mod tests {
         // Verify that the initial setup is correct
         assert_eq!(state.current_color(), Color::Blue);
         assert_eq!(state.current_team(), Team::One);
-        assert_eq!(state.start_color, state.current_color());
         assert_eq!(state.start_team, state.current_team());
-        assert_eq!(state.ordered_colors[state.current_color_index as usize], state.current_color());
         assert_eq!(state.board.count_obstructed(), 0);
         assert!(state.is_first_move());
 

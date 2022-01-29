@@ -2,6 +2,8 @@ use std::{fmt, str::FromStr};
 use crate::util::{SCResult, SCError, FromXmlNode, XmlNode};
 use super::Team;
 
+pub const COLOR_COUNT: usize = 4;
+
 /// A color in the game.
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum Color {
