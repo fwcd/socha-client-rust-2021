@@ -314,7 +314,6 @@ impl GameState {
 
 impl FromXmlNode for GameState {
     fn from_node(node: &XmlNode) -> SCResult<Self> {
-        println!("Node: {:?}", node);
         Ok(Self {
             turn: node.attribute("turn")?.parse()?,
             round: node.attribute("round")?.parse()?,
