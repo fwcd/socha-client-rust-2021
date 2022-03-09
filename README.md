@@ -16,7 +16,7 @@ cargo build --release
 
 ## Running
 
-First make sure to have the game server for Hive running (you can [download a copy from GitHub here](https://github.com/software-challenge/backend/releases/tag/21.4.0)).
+First make sure to have the game server for Blokus running (you can [download a copy from GitHub here](https://github.com/software-challenge/backend/releases/tag/21.4.0)).
 
 To start an instance of the client, you can now run
 
